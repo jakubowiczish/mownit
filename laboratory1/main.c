@@ -15,7 +15,7 @@
 int main() {
     float f = 1.0;
 
-    for (int i = 0; i < 120; ++i) {
+    for (int i = 0; i < 200; ++i) {
         f /= 2;
         gsl_ieee_printf_float(&f);
         puts("\n");
