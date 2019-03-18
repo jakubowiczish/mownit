@@ -3,8 +3,8 @@
 #include <time.h>
 #include <string.h>
 
-const int SIZE_OF_MATRIX = 500;
-const int SIZE_OF_VECTOR = 250000;
+const int SIZE_OF_MATRIX = 5000;
+const int SIZE_OF_VECTOR = 25000000;
 
 static struct timespec timespec_start, timespec_stop;
 
@@ -94,7 +94,7 @@ void fill_csv() {
 
     char *buffer = malloc(buffer_size * sizeof(char));
     snprintf(buffer, buffer_size,
-             "SIZE_OF_VECTOR,ITERATION,TIME - VECTOR, TIME - MATRIX");
+             "SIZE_OF_VECTOR,ITERATION,TIME - VECTOR, TIME - MATRIX\n");
     fwrite(buffer, sizeof(char), strlen(buffer), csv_file);
 
     double *result_array = calloc(SIZE_OF_MATRIX, sizeof(double));
