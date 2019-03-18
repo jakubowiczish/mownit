@@ -12,14 +12,14 @@
  * zobaczyć jak zmienia się cecha i mantysa dla coraz mniejszych liczb.
  * Zaobserwować, kiedy matysa przestaje być znormalizowana i dlaczego?
  */
-int main() {
-    float f = 1.0;
-
-    for (int i = 0; i < 200; ++i) {
-        f /= 2;
-        gsl_ieee_printf_float(&f);
-        puts("\n");
-    }
-
-    return 0;
-}
+//int main() {
+//    float f = 1.0;
+//
+//    for (int i = 0; i < 200; ++i) {
+//        f /= 2;
+//        gsl_ieee_printf_float(&f);
+//        puts("\n");
+//    }
+//
+//    return 0;
+//}
