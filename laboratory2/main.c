@@ -24,11 +24,10 @@ void start_timer() {
     clock_gettime(CLOCK_REALTIME, &timespec_start);
 }
 
-double stop_timer() {
+long stop_timer() {
     clock_gettime(CLOCK_REALTIME, &timespec_stop);
     struct timespec timespec_diff_time = timespec_diff(timespec_start, timespec_stop);
-    double result = timespec_diff_time.tv_sec + timespec_diff_time.tv_nsec / (double) 1000000000;
-    return result;
+    return timespec_diff_time.tv_nsec;
 }
 
 double *get_generated_vector(int size_of_vector) {
@@ -51,7 +50,7 @@ double *get_generated_matrix(int size_of_matrix) {
     return matrix;
 }
 
-double get_vectors_multiplication_time(double *vector_1_double, double *vector_2_double, int size) {
+long get_vectors_multiplication_time(double *vector_1_double, double *vector_2_double, int size) {
     gsl_vector_view vector1 = gsl_vector_view_array(vector_1_double, (size_t) size);
     gsl_vector_view vector2 = gsl_vector_view_array(vector_2_double, (size_t) size);
 
@@ -63,8 +62,7 @@ double get_vectors_multiplication_time(double *vector_1_double, double *vector_2
     return stop_timer();
 }
 
-double
-get_matrix_and_vector_multiplication_time(double *matrix_double, double *vector_double, int size, double *result) {
+long get_matrix_and_vector_multiplication_time(double *matrix_double, double *vector_double, int size, double *result) {
     gsl_matrix_view matrix = gsl_matrix_view_array(matrix_double, size, size);
     gsl_vector_view vector = gsl_vector_view_array(vector_double, size);
 
@@ -94,25 +92,25 @@ void fill_csv() {
 
     char *buffer = malloc(buffer_size * sizeof(char));
     snprintf(buffer, buffer_size,
-             "SIZE_OF_VECTOR,ITERATION,TIME-VECTOR, TIME-MATRIX\n");
+             "SIZE_OF_VECTOR,ITERATION,VECTOR_TIME,MATRIX_TIME\n");
     fwrite(buffer, sizeof(char), strlen(buffer), csv_file);
 
     double *result_array = calloc(SIZE_OF_MATRIX, sizeof(double));
 
-    int size = 50;
-    while (size < SIZE_OF_MATRIX) {
+    int size = 1;
+    while (size < 25) {
         for (int i = 0; i < 10; ++i) {
-            double vector_multiplication_time = get_vectors_multiplication_time(vector, vector, size * size);
-            double matrix_and_vector_multiplication_time = get_matrix_and_vector_multiplication_time(matrix, vector,
+            long vector_multiplication_time = get_vectors_multiplication_time(vector, vector, size);
+            long matrix_and_vector_multiplication_time = get_matrix_and_vector_multiplication_time(matrix, vector,
                                                                                                      size,
                                                                                                      result_array);
 
-            snprintf(buffer, buffer_size, "%d,%d,%lf,%lf\n", size * size, i, vector_multiplication_time,
+            snprintf(buffer, buffer_size, "%d,%d,%ld,%ld\n", size, i, vector_multiplication_time,
                      matrix_and_vector_multiplication_time);
 
             fwrite(buffer, sizeof(char), strlen(buffer), csv_file);
         }
-        size += 50;
+        size += 1;
     }
 
     fclose(csv_file);
