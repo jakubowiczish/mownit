@@ -94,7 +94,7 @@ void fill_csv() {
 
     char *buffer = malloc(buffer_size * sizeof(char));
     snprintf(buffer, buffer_size,
-             "SIZE_OF_VECTOR,ITERATION,TIME - VECTOR, TIME - MATRIX\n");
+             "SIZE_OF_VECTOR,ITERATION,TIME-VECTOR, TIME-MATRIX\n");
     fwrite(buffer, sizeof(char), strlen(buffer), csv_file);
 
     double *result_array = calloc(SIZE_OF_MATRIX, sizeof(double));
