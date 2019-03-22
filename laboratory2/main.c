@@ -39,7 +39,7 @@ double *get_generated_vector(int size_of_vector) {
     return vector;
 }
 
-double *get_generated_matrix(int size_of_matrix) {
+double *get_gsl_generated_matrix(int size_of_matrix) {
     srand((unsigned) time(NULL));
     double *matrix = malloc(size_of_matrix * size_of_matrix * sizeof(double));
     for (int i = 0; i < size_of_matrix; ++i) {
@@ -78,7 +78,7 @@ long get_matrix_and_vector_multiplication_time(double *matrix_double, double *ve
 
 void fill_csv() {
     double *vector = get_generated_vector(SIZE_OF_VECTOR);
-    double *matrix = get_generated_matrix(SIZE_OF_MATRIX);
+    double *matrix = get_gsl_generated_matrix(SIZE_OF_MATRIX);
 
     char *csv_file_name = "result.csv";
     unsigned int buffer_size = 512;

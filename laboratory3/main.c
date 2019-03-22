@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <time.h>
+#include <stdio.h>
 
 static struct timespec timespec_start, timespec_stop;
 
@@ -25,7 +26,7 @@ long stop_timer() {
     return timespec_diff_time.tv_nsec;
 }
 
-double *get_generated_matrix(int size_of_matrix) {
+double *get_gsl_generated_matrix(int size_of_matrix) {
     srand((unsigned) time(NULL));
     double *matrix = malloc(size_of_matrix * size_of_matrix * sizeof(double));
     for (int i = 0; i < size_of_matrix; ++i) {
@@ -36,3 +37,54 @@ double *get_generated_matrix(int size_of_matrix) {
     return matrix;
 }
 
+double **get_regular_generated_matrix(int size_of_matrix) {
+    srand((unsigned) time(NULL));
+    double **matrix = malloc(size_of_matrix * size_of_matrix * sizeof(double));
+    for (int k = 0; k < size_of_matrix; ++k) {
+        matrix[k] = malloc(size_of_matrix * sizeof(double));
+    }
+
+    for (int i = 0; i < size_of_matrix; ++i) {
+        for (int j = 0; j < size_of_matrix; ++j) {
+            matrix[i][j] = rand() % 50 + 1;
+        }
+    }
+    return matrix;
+}
+
+void print_matrix(double **matrix, int size_of_matrix) {
+    for (int i = 0; i < size_of_matrix; ++i) {
+        for (int j = 0; j < size_of_matrix; ++j) {
+            printf("%f\t", matrix[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
+double **naive_multiplication(double **A, double **B, int size_of_matrix) {
+    double **result = malloc(size_of_matrix * size_of_matrix * sizeof(double));
+    for (int k = 0; k < size_of_matrix; ++k) {
+        result[k] = malloc(size_of_matrix * sizeof(double));
+    }
+
+    for (int i = 0; i < size_of_matrix; ++i) {
+        for (int j = 0; j < size_of_matrix; ++j) {
+            for (int k = 0; k < size_of_matrix; ++k) {
+                result[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+    return result;
+}
+
+int main(int argc, char **argv) {
+    int SIZE = 10;
+    double **A = get_regular_generated_matrix(SIZE);
+    double **B = get_regular_generated_matrix(SIZE);
+    print_matrix(A, SIZE);
+    print_matrix(B, SIZE);
+    double **C = naive_multiplication(A, B, SIZE);
+    print_matrix(C, SIZE);
+    return 0;
+}
