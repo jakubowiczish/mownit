@@ -73,9 +73,10 @@ double **naive_multiplication(double **A, double **B, int size_of_matrix) {
         result[k] = malloc(size_of_matrix * sizeof(double));
     }
 
-    for (int i = 0; i < size_of_matrix; ++i) {
-        for (int j = 0; j < size_of_matrix; ++j) {
-            for (int k = 0; k < size_of_matrix; ++k) {
+    int i, j, k;
+    for (j = 0; j < size_of_matrix; ++j) {
+        for (i = 0; i < size_of_matrix; ++i) {
+            for (k = 0; k < size_of_matrix; ++k) {
                 result[i][j] += A[i][k] * B[k][j];
             }
         }
@@ -89,9 +90,10 @@ double **better_multiplication(double **A, double **B, int size_of_matrix) {
         result[k] = malloc(size_of_matrix * sizeof(double));
     }
 
-    for (int j = 0; j < size_of_matrix; ++j) {
-        for (int k = 0; k < size_of_matrix; ++k) {
-            for (int i = 0; i < size_of_matrix; ++i) {
+    int i, j, k;
+    for (i = 0; i < size_of_matrix; ++i) {
+        for (k = 0; k < size_of_matrix; ++k) {
+            for (j = 0; j < size_of_matrix; ++j) {
                 result[i][j] += A[i][k] * B[k][j];
             }
         }
@@ -150,8 +152,8 @@ void fill_csv() {
 
     double *result_array = calloc((size_t) SIZE_OF_MATRIX, sizeof(double));
 
-    int size = 1;
-    while (size < 25) {
+    int size = 25;
+    while (size < 500) {
         for (int i = 0; i < 10; ++i) {
             long naive_multiplication_time = get_naive_multiplication_time(A, B, size);
             long better_multiplication_time = get_better_multiplication_time(A, B, size);
@@ -160,11 +162,11 @@ void fill_csv() {
             snprintf(
                     buffer, buffer_size, "%d,%d,%ld,%ld,%ld\n", size, i,
                     naive_multiplication_time, better_multiplication_time, gsl_multiplication_time
-                    );
+            );
 
             fwrite(buffer, sizeof(char), strlen(buffer), csv_file);
         }
-        size += 1;
+        size += 25;
     }
 
     fclose(csv_file);

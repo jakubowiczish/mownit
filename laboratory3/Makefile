@@ -1,10 +1,9 @@
-all:
-	gcc main.c -o out_main
+out_file: main.c
+	gcc main.c `pkg-config --cflags --libs gsl` -lgslcblas -lgsl -lm -o out_file
 
-run:
-	make all
-	./out_main
+run: out_file
+	./out_file
 
-clean:
-	rm -f out_main
+clean: out_file
+	rm -f out_file
 	rm -f *.csv
