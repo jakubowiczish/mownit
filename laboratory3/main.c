@@ -130,13 +130,12 @@ long get_gsl_matrix_multiplication_time(double *A, double *B, const size_t size_
 }
 
 
-void fill_csv() {
+void fill_csv(char *csv_file_name) {
     double **A = get_regular_generated_matrix(SIZE_OF_MATRIX);
     double **B = get_regular_generated_matrix(SIZE_OF_MATRIX);
     double *A_gsl = get_gsl_generated_matrix(SIZE_OF_MATRIX);
     double *B_gsl = get_gsl_generated_matrix(SIZE_OF_MATRIX);
 
-    char *csv_file_name = "result.csv";
     unsigned int buffer_size = 512;
 
     FILE *csv_file = fopen(csv_file_name, "w");
@@ -170,6 +169,12 @@ void fill_csv() {
     }
 
     fclose(csv_file);
+
+    for (int j = 0; j < SIZE_OF_MATRIX; ++j) {
+        free(A[j]);
+        free(B[j]);
+    }
+
     free(A);
     free(B);
     free(A_gsl);
@@ -177,6 +182,7 @@ void fill_csv() {
 }
 
 int main(int argc, char **argv) {
-    fill_csv();
+    char *csv_file_path = argv[1];
+    fill_csv(csv_file_path);
     return 0;
 }
