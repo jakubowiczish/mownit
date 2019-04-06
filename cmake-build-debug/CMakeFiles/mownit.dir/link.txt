@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/mownit.dir/laboratory1/main.c.o CMakeFiles/mownit.dir/laboratory2/main.c.o CMakeFiles/mownit.dir/laboratory3/main.c.o  -o mownit /usr/lib/x86_64-linux-gnu/libgsl.so /usr/lib/x86_64-linux-gnu/libgslcblas.so 

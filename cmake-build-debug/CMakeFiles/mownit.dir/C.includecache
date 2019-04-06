@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jakub/CLionProjects/mownit/laboratory1/main.c
+stdio.h
+-
+gsl/gsl_ieee_utils.h
+-
+gsl/gsl_interp.h
+-
+gsl/gsl_cblas.h
+-
+math.h
+-
+
+/home/jakub/CLionProjects/mownit/laboratory2/main.c
+stdio.h
+-
+gsl/gsl_blas.h
+-
+time.h
+-
+string.h
+-
+
+/home/jakub/CLionProjects/mownit/laboratory3/main.c
+stdlib.h
+-
+time.h
+-
+stdio.h
+-
+
