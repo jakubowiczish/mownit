@@ -28,3 +28,7 @@ https://nbviewer.jupyter.org/github/jakubowiczish/mownit/blob/master/laboratory6
 - Zbadać i zademonstrować podczas zajęc rózne algorytmy interpolacji stosowane w grafice komputerowej (np. do zmiany wielkości obrazu). 
   - Można korzystac z gotowych rozwiazań, ale trzeba wiedzieć, jak te algorytmy dzialaja. 
   - Do zaliczenia tego zadania potrzebne jest demonstracja i porownanie działania conajmniej dwóch metod.
+
+- DODATKOWE MATERIAŁY DO ZADANIA NR 7:
+  - http://www.algorytm.org/przetwarzanie-obrazow/zmiana-wielkosci-obrazu-najblizsze-sasiedztwo.html
+  - http://www.algorytm.org/przetwarzanie-obrazow/zmiana-wielkosci-obrazu-interpolacja-dwuliniowa.html
