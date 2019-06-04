@@ -20,6 +20,10 @@
 
 ## Lab 10 - Computer simulation using Ordinary differential equations
 
+
+## All ancillary materials are available here:
+https://github.com/jakubowiczish/mownit/tree/master/ancillary_materials
+
 ### In case you have problem with opening ipynb files, use this site:
 
 https://nbviewer.jupyter.org/
