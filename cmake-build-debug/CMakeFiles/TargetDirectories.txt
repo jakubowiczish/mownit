@@ -1,3 +1,0 @@
-/home/jakub/CLionProjects/mownit/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/jakub/CLionProjects/mownit/cmake-build-debug/CMakeFiles/mownit.dir
-/home/jakub/CLionProjects/mownit/cmake-build-debug/CMakeFiles/edit_cache.dir
